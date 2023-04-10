@@ -15,8 +15,8 @@ const PostCard = () => {
             />
           </div>
           <div className="my-auto">
-            <p className="font-bold">Nome</p>
-            <p>Localização</p>
+            <p className="font-bold text-quinary">Nome</p>
+            <p className="text-quinary">Localização</p>
           </div>
         </div>
         <div className="p-2">
@@ -53,14 +53,14 @@ const PostCard = () => {
 
       <div className="flex flex-col px-2 gap-2">
         <div className="flex gap-2">
-          <div className="font-bold">
+          <div className="font-bold text-quinary">
             Nome
           </div>
           <div>
-            <p>Coment´\rio endebhn dceybddsja becued jceucu</p>
+            <p className=" text-quinary">Coment´\rio endebhn dceybddsja becued jceucu</p>
           </div>
         </div>
-        <div className="text-gray-500">
+        <div className="text-quaternary mb-2">
           Ver todos os 8 comentários
         </div>
       </div>
@@ -76,7 +76,7 @@ const PostCard = () => {
           />
         </div>
         <div>
-          <p>Adicione um comentário</p>
+          <p className=" text-quinary">Adicione um comentário</p>
         </div>
       </div>
     </div>

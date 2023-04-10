@@ -1,21 +1,37 @@
 import Image from "next/image"
+import HouseIcon from "./icons/houseIcon"
+import SearchIcon from "./icons/searchIcon"
+import PlusIcon from "./icons/plusIcon"
+import ContentIcon from "./icons/contentIcon"
 
 
 const Menu = () => {
   return (
-    <div className="fixed bottom-0 p-2 w-full bg-black">
+    <div className="fixed bottom-0 px-5 py-2 w-full bg-black">
       <div className="flex justify-between">
         <div>
-          Casa
+          <HouseIcon
+            fill="#E92B2B"
+            width="40"
+          />
         </div>
         <div>
-          Lupa
+          <SearchIcon
+            fill="#E92B2B"
+            width="40"
+          />
         </div>
         <div>
-          +
+          <PlusIcon
+            fill="#E92B2B"
+            width="40"
+          />
         </div>
         <div>
-          Videos
+          <ContentIcon
+            fill="#E92B2B"
+            width="40"
+          />
         </div>
         <div>
           <Image 
