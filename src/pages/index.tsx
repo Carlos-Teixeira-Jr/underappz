@@ -4,23 +4,41 @@ import Header from '@/components/header'
 import FavCaroussel from '@/components/favCarroussel'
 import PostCard from '@/components/postCard'
 import Menu from '@/components/menu'
+import { useMediaQuery } from 'react-responsive'
+import DesktopMenu from '@/components/desktopMenu'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  const isMobile = useMediaQuery({ query: `(max-width: 400)` })
+
   return (
-    <main className="">
-      <Header/>
+    <main className="max-w-[1536px] lg:flex">
 
-      <FavCaroussel/>
+      {!isMobile && (
+        <DesktopMenu/>
+      )}
+      
+      <div>
+        {isMobile && (
+          <Header/>
+        )}
 
-      <PostCard/>
-      <PostCard/>
-      <PostCard/>
-      <PostCard/>
-      <PostCard/>
+        <FavCaroussel/>
 
-      <Menu/>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+
+        {isMobile && (
+          <Menu/>
+        )}
+      </div>
+      
+      
     </main>
   )
 }

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import ArrowLeftIcon from "./icons/arrowLeftIcon"
+import Link from "next/link"
 
 
 const NotificationsList = () => {
@@ -8,10 +9,12 @@ const NotificationsList = () => {
 
       <div className="flex justify-between">
         <div>
-          <ArrowLeftIcon
-            width="30"
-            fill="#F5F6FA"
-          />
+          <Link href={"/"}>
+            <ArrowLeftIcon
+              width="30"
+              fill="#F5F6FA"
+            />
+          </Link>
         </div>
         <div className="my-auto">
           <h1 className="text-quinary text-xl font-semibold">
@@ -43,7 +46,7 @@ const NotificationsList = () => {
               ação realizada
             </div>
             <div className="my-auto">
-              <p className="text-sm text-quaternary">25 min</p>
+              <p className="text-sm text-gray-600">25 min</p>
             </div>
           </div>
           <div className="my-auto">

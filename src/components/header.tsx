@@ -7,7 +7,7 @@ import Link from "next/link"
 const Header = () => {
   return (
     <nav>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between">
         <Link href={"/"}>
           <Image 
             src={"/logo.png"} 
@@ -16,19 +16,19 @@ const Header = () => {
             height={100}
           />
         </Link>
-        <div className="flex gap-5 my-auto">
+        <div className="flex gap-8 my-auto bg-primary py-2 px-8 rounded-bl-3xl">
           <div>
             <Link href={"/notifications"}>
               <HeartIcon
                 width="25"
-                fill="#E92B2B"
+                fill="#F5F6FA"
               />
             </Link>
           </div>
           <div>
             <MessageBalloonIcon
               width="25"
-              fill="#E92B2B"
+              fill="#F5F6FA"
             />
           </div>
         </div>
