@@ -4,11 +4,42 @@ import SearchIcon from "./icons/searchIcon"
 import PlusIcon from "./icons/plusIcon"
 import ContentIcon from "./icons/contentIcon"
 import HomeIcon from "./icons/homeIcon"
+import { useEffect, useState } from "react"
 
 
 const Menu = () => {
+
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    function handleResize(){
+      setIsMobile(window.innerWidth < 768);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [])
+
   return (
-    <div className="fixed bottom-0 px-5 py-2 w-full bg-primary">
+    <div className="fixed bottom-0 px-5 py-2 w-full bg-primary drop-shadow-lg">
+
+      {menuIsOpen && (
+        <div className="bg-primary text-center text-3xl py-10 space-y-10">
+          <p>Música</p>
+          <p>Vídeo</p>
+          <p>Imagem</p>
+          <p>Eventos</p>
+          <p>Equipamentos</p>
+          <p>Mais...</p>
+        </div>
+      )}
+
+      
+
       <div className="flex justify-between">
         <div>
           <HomeIcon
@@ -28,7 +59,9 @@ const Menu = () => {
             width="40"
           />
         </div>
-        <div>
+        <div
+          onClick={() => setMenuIsOpen(!menuIsOpen)}
+        >
           <ContentIcon
             fill="#FBFFFD"
             width="43"
