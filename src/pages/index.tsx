@@ -7,7 +7,7 @@ import DesktopMenu from '@/components/desktopMenu'
 import { useEffect, useState } from 'react'
 
 export async function getStaticProps() {
-  const posts = await fetch('https://raw.githubusercontent.com/Carlos-Teixeira-Jr/underappz/main/data/postData.tsx')
+  const posts = await fetch('https://raw.githubusercontent.com/Carlos-Teixeira-Jr/underappz/main/data/postData.json')
     .then((res) => res.json())
     .catch(() => ({}));
 
