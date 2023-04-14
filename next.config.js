@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      '46781.cdn.simplo7.net'
+      '46781.cdn.simplo7.net',
+      'imgblogchicorei.imgix.net'
     ]
   }
 }

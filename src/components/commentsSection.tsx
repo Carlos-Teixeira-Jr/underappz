@@ -27,27 +27,29 @@ const CommentsSection = ({userName, description, comments}: ICommentsSection) =>
         </div>
       </div>
 
-      {comments.length > 0 && (
-        <p className="text-quinary font-thin text-xs p-2">Ver todos os {comments.length} comentários</p>
-      )}
+      <div className="bg-quaternary rounded-lg">
+        {comments.length > 0 && (
+          <p className="text-quinary font-thin text-xs p-2">Ver todos os {comments.length} comentários</p>
+        )}
 
-      {comments.map((comment, index) => (
-        <div 
-          className="bg-quaternary rounded-md"
-          key={index}
-        >
-          <div className="flex justify-between px-2">
-            <div className="flex gap-2">
-              <p className="font-bold text-quinary">{comment.commentatorName}</p>
-              <p>{comment.comment}</p>
+        {comments.map((comment, index) => (
+          <div 
+            className="rounded-md"
+            key={index}
+          >
+            <div className="flex justify-between px-2">
+              <div className="flex gap-4">
+                <p className="font-bold text-quinary">{comment.commentatorName}</p>
+                <p>{comment.comment}</p>
+              </div>
+              <HeartIcon
+                width="15"
+                height="25"
+              />
             </div>
-            <HeartIcon
-              width="25"
-              height="25"
-            />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       
       <div className="mb-2">
         <div className="flex gap-2 px-2">

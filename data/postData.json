@@ -34,5 +34,78 @@
         "comment": "Nada a ver ficou um lixo"
       }
     ]
+  },
+  {
+    "id": 2,
+    "user": "João Barata",
+    "author": "Kafkarlos",
+    "type": "photo",
+    "title": "Doidera",
+    "location": "Las Vegas",
+    "description": "Tirei essa foto sentando em casa pensando no nada",
+    "category": "minimalista",
+    "tags": [
+      "homemade",
+      "diy",
+      "minimalista"
+    ],
+    "photoUrl": "https://imgblogchicorei.imgix.net/content/images/2021/06/Entenda-e-adote-o-estilo-minimalista-para-simplificar-sua-vida-de-uma-vez-por-todas-opt.jpg?auto=compress%2Cformat&q=65&w=1000",
+    "reviews": [
+      {
+        "reviewerName": "Paulão Sardinha",
+        "reviewText": "Pintura muito massa, colorida, muito doida, topster"
+      }
+    ],
+    "comments": [
+      {
+        "commentatorName": "Matheus Valares",
+        "comment": "Doidera hein bixo"
+      },
+      {
+        "commentatorName": "Joana Candida",
+        "comment": "Muito massa, adorei."
+      },
+      {
+        "commentatorName": "maninho doido",
+        "comment": "Nada a ver ficou um lixo"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "user": "Lucia Alcantara",
+    "author": "Lucinha",
+    "type": "photo",
+    "title": "Exorcismo",
+    "location": "Afeganistão",
+    "description": "Imagem de umagarota possúída pelo cão que tirei da tela de um filme",
+    "category": "dark",
+    "tags": [
+      "dark",
+      "filme",
+      "terror"
+    ],
+    "photoUrl": "https://imgblogchicorei.imgix.net/content/images/2021/06/o-exorcismo-de-emily-rose-1.jpg?auto=compress,format&q=65&w=750",
+    "reviews": [
+      {
+        "reviewerName": "Maria Nunes",
+        "reviewText": "Pintura muito massa, colorida, muito doida, topster"
+      }
+    ],
+    "comments": [
+      {
+        "commentatorName": "Joana Dias",
+        "comment": "Doidera hein bixo"
+      },
+      {
+        "commentatorName": "Daiana Medeiros",
+        "comment": "Muito massa, adorei."
+      },
+      {
+        "commentatorName": "maninho doido",
+        "comment": "Nada a ver ficou um lixo"
+      }
+    ]
   }
 ]
+
