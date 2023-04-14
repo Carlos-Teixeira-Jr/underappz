@@ -60,17 +60,19 @@ console.log("🚀 ~ file: index.tsx:24 ~ Home ~ posts:", posts)
 
         <FavCaroussel/>
         
-        {/* {posts.map(
+        {posts.map(
           ({
-            imgUrl,
-            description
+            photoUrl,
+            description,
+            name
           }: any) =>(
             <PostCard 
-              imgUrl={imgUrl} 
-              alt={description}
+              imgUrl={photoUrl} 
+              alt={""}
+              name={name}
             />
           )
-        )} */}
+        )}
         
 
 

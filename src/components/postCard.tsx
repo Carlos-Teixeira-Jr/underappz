@@ -7,10 +7,11 @@ import MoreIcon from "./icons/moreIcon"
 
 export interface IPostCard{
   imgUrl: string,
-  alt: string
+  alt: string,
+  name: string
 }
 
-const PostCard = ({imgUrl, alt}: IPostCard) => {
+const PostCard = ({imgUrl, alt, name}: IPostCard) => {
   return (
     <div className="w-full">
       
@@ -37,7 +38,7 @@ const PostCard = ({imgUrl, alt}: IPostCard) => {
             />
           </div>
           <div className="my-auto">
-            <p className="font-bold text-quinary">Nome</p>
+            <p className="font-bold text-quinary">{name}</p>
             <p className="text-quinary text-xs">Localização</p>
           </div>
         </div>

@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "user": 1,
+    "user": "carlos teixeira",
+    "author": "carlos teixeira",
     "type": "photo",
     "title": "Minha fotografia",
     "description": "Uma fotografia abstrata que tirei a um tempo atrás",
