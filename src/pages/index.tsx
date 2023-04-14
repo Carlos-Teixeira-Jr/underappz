@@ -23,10 +23,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Home = ({ posts }: any) => {
 
-console.log("🚀 ~ file: index.tsx:24 ~ Home ~ posts:", posts)
-
-  
-
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -67,10 +63,12 @@ console.log("🚀 ~ file: index.tsx:24 ~ Home ~ posts:", posts)
             description,
             user,
             location,
-            comments
+            comments,
+            id
           }: any) =>(
             <>
               <PostCard
+                key={id}
                 imgUrl={photoUrl}
                 alt={""}
                 userName={user}
@@ -79,8 +77,9 @@ console.log("🚀 ~ file: index.tsx:24 ~ Home ~ posts:", posts)
               />
               <CommentsSection 
                 userName={user}
-                description={description} 
-                comments={comments}              
+                description={description}
+                comments={comments}
+                id={id}
               />
             </>
           )

@@ -5,6 +5,7 @@ import PlusIcon from "./icons/plusIcon"
 import ContentIcon from "./icons/contentIcon"
 import HomeIcon from "./icons/homeIcon"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 
 const Menu = () => {
@@ -25,7 +26,7 @@ const Menu = () => {
   }, [])
 
   return (
-    <div className="fixed bottom-0 px-5 py-2 w-full bg-primary drop-shadow-lg">
+    <div className="fixed bottom-0 px-5 w-full bg-primary drop-shadow-lg">
 
       {menuIsOpen && (
         <div className="bg-primary text-center text-3xl py-10 space-y-10">
@@ -41,17 +42,21 @@ const Menu = () => {
       
 
       <div className="flex justify-between">
-        <div>
+        <div
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
           <HomeIcon
             fill="#FBFFFD"
             width="38"
           />
         </div>
         <div>
-          <SearchIcon
-            fill="#FBFFFD"
-            width="38"
-          />
+          <Link href={"/art-mosaic"}>
+            <SearchIcon
+              fill="#FBFFFD"
+              width="38"
+            />
+          </Link>
         </div>
         <div>
           <PlusIcon

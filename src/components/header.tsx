@@ -26,10 +26,12 @@ const Header = () => {
             </Link>
           </div>
           <div>
-            <MessageBalloonIcon
-              width="25"
-              fill="#F5F6FA"
-            />
+            <Link href={"/messages"}>
+              <MessageBalloonIcon
+                width="25"
+                fill="#F5F6FA"
+              />
+            </Link>
           </div>
         </div>
       </div>

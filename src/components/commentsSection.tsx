@@ -10,14 +10,16 @@ export interface IComment {
 export interface ICommentsSection{
   userName: string, 
   description: string
-  comments: IComment[]
+  comments: IComment[],
+  id: any
 }
 
-
-
-const CommentsSection = ({userName, description, comments}: ICommentsSection) =>{
+const CommentsSection = ({userName, description, comments, id}: ICommentsSection) =>{
   return (
-    <div className="flex flex-col gap-2">
+    <div 
+      className="flex flex-col gap-2"
+      key={id}
+    >
       <div className="flex gap-2 px-2">
         <div className="font-bold text-quinary">
           <p>{userName}</p>
