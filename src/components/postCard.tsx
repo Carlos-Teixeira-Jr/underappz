@@ -5,15 +5,20 @@ import ShareIcon from "./icons/shareIcon"
 import SaveIcon from "./icons/saveIcon"
 import MoreIcon from "./icons/moreIcon"
 
-const PostCard = () => {
+export interface IPostCard{
+  imgUrl: string,
+  alt: string
+}
+
+const PostCard = ({imgUrl, alt}: IPostCard) => {
   return (
     <div className="w-full">
       
 
       <div>
         <Image 
-          src={"/PSX_20200307_104707.jpg"} 
-          alt={""}
+          src={imgUrl} 
+          alt={alt}
           width={400}
           height={400}
           className="w-full"

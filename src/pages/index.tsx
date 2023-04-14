@@ -5,10 +5,11 @@ import PostCard from '@/components/postCard'
 import Menu from '@/components/menu'
 import DesktopMenu from '@/components/desktopMenu'
 import { useEffect, useState } from 'react'
+import { posts } from '../../data/postData'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({ posts }: any) {
 
   const [isMobile, setIsMobile] = useState(false)
 
@@ -43,19 +44,25 @@ export default function Home() {
         )}
 
         <FavCaroussel/>
+        
+        {posts.map(
+          ({
+            imgUrl,
+            description
+          }: any) =>(
+            <PostCard 
+              imgUrl={imgUrl} 
+              alt={description}
+            />
+          )
+        )}
+        
 
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
 
         {isMobile && (
           <Menu/>
         )}
       </div>
-      
-      
     </main>
   )
 }

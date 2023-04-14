@@ -7,12 +7,28 @@ import ImageIcon from "./icons/imageIcons"
 import EventIcon from "./icons/eventIcon"
 import MessageBalloonIcon from "./icons/messageBalloonIcon"
 import NoteIcon from "./icons/noteIcon"
-import CreativeIcon from "./icons/criativeIcon"
+import CreativeIcon from "./icons/textIcon"
 import ProfileIcon from "./icons/profileIcon"
 import MoreIcon from "./icons/moreIcon"
+import SidebarSearch from "./sideBarSearch"
+import { useState } from "react"
+import SidebarNotifications from "./SidebarNotifications"
+import TextIcon from "./icons/textIcon"
+import SidebarConfig from "./sidebarConfig"
 
 
 const DesktopMenu = () => {
+
+  const [sidebarOptionIsOpen, setSidebarOptionIsOpen] = useState("");
+
+  const handleMenuOptionClick = (id: string) => {
+    if(sidebarOptionIsOpen === id){
+      setSidebarOptionIsOpen("");
+    }else{
+      setSidebarOptionIsOpen(id)
+    }
+  }
+  
   return (
     <div className="flex fixed">
       <div className=" bg-black pr-16">
@@ -27,7 +43,10 @@ const DesktopMenu = () => {
           </Link>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div 
+            className="flex px-4 gap-4 cursor-pointer"
+            onClick={() => handleMenuOptionClick("search")}
+          >
             <SearchIcon
               width="35"
             />
@@ -60,6 +79,17 @@ const DesktopMenu = () => {
         </div>
         <div>
           <div className="flex px-4 gap-4">
+            <TextIcon
+              width="35"
+            />
+            <p 
+              className="text-lg font-thin my-auto"
+              onClick={() => handleMenuOptionClick("text")}
+            >Criar</p>
+          </div>
+        </div>
+        <div>
+          <div className="flex px-4 gap-4">
             <EventIcon
               width="35"
             />
@@ -83,21 +113,17 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div 
+            className="flex px-4 gap-4"
+            onClick={() => handleMenuOptionClick("note")}
+          >
             <NoteIcon
               width="35"
             />
             <p className="text-lg font-thin my-auto">Notificações</p>
           </div>
         </div>
-        <div>
-          <div className="flex px-4 gap-4">
-            <CreativeIcon
-              width="35"
-            />
-            <p className="text-lg font-thin my-auto">Criar</p>
-          </div>
-        </div>
+        
         <div>
           <div className="flex px-4 gap-4">
             <ProfileIcon
@@ -107,7 +133,10 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div 
+            className="flex px-4 gap-4"
+            onClick={() => handleMenuOptionClick("more")}
+          >
             <MoreIcon
               width="35"
             />
@@ -115,17 +144,19 @@ const DesktopMenu = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black">
-        <div className="p-5">
-          <h1 className="text-2xl">Pesquisa</h1>
-          <div className="bg-gray-600 rounded-md p-2 w-full my-5 flex gap-36 font-thin text-gray-900">
-            <p>Pesquisar</p>
-            <p>X</p>
-          </div>
-          <hr className="w-full"/>
-        </div>
-        
-      </div>
+
+      {sidebarOptionIsOpen === "search" && (
+        <SidebarSearch/>
+      )}
+
+      {sidebarOptionIsOpen === "note" && (
+        <SidebarNotifications/>
+      )}
+
+      {sidebarOptionIsOpen === "more" && (
+        <SidebarConfig/>
+      )}
+      
     </div>
   )
 }
