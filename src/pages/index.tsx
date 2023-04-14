@@ -64,12 +64,12 @@ console.log("🚀 ~ file: index.tsx:24 ~ Home ~ posts:", posts)
           ({
             photoUrl,
             description,
-            name
+            user
           }: any) =>(
             <PostCard 
               imgUrl={photoUrl} 
               alt={""}
-              name={name}
+              userName={user}
             />
           )
         )}
