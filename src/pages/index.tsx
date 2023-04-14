@@ -5,6 +5,7 @@ import PostCard from '@/components/postCard'
 import Menu from '@/components/menu'
 import DesktopMenu from '@/components/desktopMenu'
 import { useEffect, useState } from 'react'
+import CommentsSection from '@/components/commentsSection'
 
 export async function getStaticProps() {
   const posts = await fetch('https://raw.githubusercontent.com/Carlos-Teixeira-Jr/underappz/main/data/postData.json')
@@ -64,13 +65,24 @@ console.log("🚀 ~ file: index.tsx:24 ~ Home ~ posts:", posts)
           ({
             photoUrl,
             description,
-            user
+            user,
+            location,
+            comments
           }: any) =>(
-            <PostCard 
-              imgUrl={photoUrl} 
-              alt={""}
-              userName={user}
-            />
+            <>
+              <PostCard
+                imgUrl={photoUrl}
+                alt={""}
+                userName={user}
+                location={location}
+                description={description} 
+              />
+              <CommentsSection 
+                userName={user}
+                description={description} 
+                comments={comments}              
+              />
+            </>
           )
         )}
         

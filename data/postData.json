@@ -5,6 +5,7 @@
     "author": "carlos teixeira",
     "type": "photo",
     "title": "Minha fotografia",
+    "location": "Cassino",
     "description": "Uma fotografia abstrata que tirei a um tempo atrás",
     "category": "abstrato",
     "tags": [
@@ -23,6 +24,14 @@
       {
         "commentatorName": "alfredo borgonha",
         "comment": "Doidera hein bixo"
+      },
+      {
+        "commentatorName": "Carlão da Massa",
+        "comment": "Muito massa, adorei."
+      },
+      {
+        "commentatorName": "maninho doido",
+        "comment": "Nada a ver ficou um lixo"
       }
     ]
   }
