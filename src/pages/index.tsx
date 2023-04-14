@@ -5,11 +5,26 @@ import PostCard from '@/components/postCard'
 import Menu from '@/components/menu'
 import DesktopMenu from '@/components/desktopMenu'
 import { useEffect, useState } from 'react'
-import { posts } from '../../data/postData'
+
+export async function getStaticProps() {
+  const posts = await fetch('https://raw.githubusercontent.com/Carlos-Teixeira-Jr/underappz/main/data/postData.tsx')
+    .then((res) => res.json())
+    .catch(() => ({}));
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ posts }: any) {
+const Home = ({ posts }: any) => {
+
+console.log("🚀 ~ file: index.tsx:24 ~ Home ~ posts:", posts)
+
+  
 
   const [isMobile, setIsMobile] = useState(false)
 
@@ -45,7 +60,7 @@ export default function Home({ posts }: any) {
 
         <FavCaroussel/>
         
-        {posts.map(
+        {/* {posts.map(
           ({
             imgUrl,
             description
@@ -55,7 +70,7 @@ export default function Home({ posts }: any) {
               alt={description}
             />
           )
-        )}
+        )} */}
         
 
 
@@ -65,4 +80,7 @@ export default function Home({ posts }: any) {
       </div>
     </main>
   )
-}
+};
+
+export default Home
+
