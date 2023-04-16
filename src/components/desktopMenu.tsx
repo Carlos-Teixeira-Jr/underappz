@@ -7,7 +7,6 @@ import ImageIcon from "./icons/imageIcons"
 import EventIcon from "./icons/eventIcon"
 import MessageBalloonIcon from "./icons/messageBalloonIcon"
 import NoteIcon from "./icons/noteIcon"
-import CreativeIcon from "./icons/textIcon"
 import ProfileIcon from "./icons/profileIcon"
 import MoreIcon from "./icons/moreIcon"
 import SidebarSearch from "./sideBarSearch"
@@ -54,15 +53,17 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
-            <MusicIcon
-              width="35"
-            />
-            <p className="text-lg font-thin my-auto">Música</p>
-          </div>
+          <Link href={"/music"}>
+            <div className="flex px-4 gap-4 cursor-pointer">
+              <MusicIcon
+                width="35"
+              />
+              <p className="text-lg font-thin my-auto">Música</p>
+            </div>
+          </Link>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div className="flex px-4 gap-4 cursor-pointer">
             <VideoIcon
               width="35"
             />
@@ -70,7 +71,7 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div className="flex px-4 gap-4 cursor-pointer">
             <ImageIcon
               width="35"
             />
@@ -78,7 +79,7 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div className="flex px-4 gap-4 cursor-pointer">
             <TextIcon
               width="35"
             />
@@ -89,7 +90,7 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div className="flex px-4 gap-4 cursor-pointer">
             <EventIcon
               width="35"
             />
@@ -97,7 +98,7 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div className="flex px-4 gap-4 cursor-pointer">
             <MusicIcon
               width="35"
             />
@@ -105,7 +106,7 @@ const DesktopMenu = () => {
           </div>
         </div>
         <div>
-          <div className="flex px-4 gap-4">
+          <div className="flex px-4 gap-4 cursor-pointer">
             <MessageBalloonIcon
               width="35"
             />
@@ -114,18 +115,18 @@ const DesktopMenu = () => {
         </div>
         <div>
           <div 
-            className="flex px-4 gap-4"
+            className="flex px-4 gap-4 cursor-pointer"
             onClick={() => handleMenuOptionClick("note")}
           >
             <NoteIcon
               width="35"
             />
-            <p className="text-lg font-thin my-auto">Notificações</p>
+            <p className="text-lg font-thin my-auto cursor-pointer">Notificações</p>
           </div>
         </div>
         
         <div>
-          <div className="flex px-4 gap-4">
+          <div className="flex px-4 gap-4 cursor-pointer">
             <ProfileIcon
               width="35"
             />
@@ -134,7 +135,7 @@ const DesktopMenu = () => {
         </div>
         <div>
           <div 
-            className="flex px-4 gap-4"
+            className="flex px-4 gap-4 cursor-pointer"
             onClick={() => handleMenuOptionClick("more")}
           >
             <MoreIcon
