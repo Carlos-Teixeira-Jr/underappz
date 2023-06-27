@@ -5,7 +5,7 @@ import PostCard from '@/components/postCard'
 import Menu from '@/components/menu'
 import DesktopMenu from '@/components/desktopMenu'
 import { useEffect, useState } from 'react'
-import CommentsSection from '@/components/commentsSection'
+import CommentsSection, { IComment } from '@/components/commentsSection'
 
 export async function getStaticProps() {
   const posts = await fetch('https://raw.githubusercontent.com/Carlos-Teixeira-Jr/underappz/main/data/postData.json')
@@ -19,9 +19,17 @@ export async function getStaticProps() {
   };
 }
 
-const inter = Inter({ subsets: ['latin'] })
+export interface IPost {
+  photoUrl: string
+  description: string
+  user: string
+  location: string
+  comments: IComment[]
+  id: number
+  idx: number
+}
 
-const Home = ({ posts }: any) => {
+const Home = ({ posts }: { posts: IPost[] }) => {
 
   const [isMobile, setIsMobile] = useState(false)
 
@@ -64,11 +72,12 @@ const Home = ({ posts }: any) => {
             user,
             location,
             comments,
-            id
-          }: any) =>(
+            id,
+            idx
+          }: IPost) =>(
             <>
               <PostCard
-                key={id}
+                key={`${id}`}
                 imgUrl={photoUrl}
                 alt={""}
                 userName={user}
@@ -76,6 +85,7 @@ const Home = ({ posts }: any) => {
                 description={description} 
               />
               <CommentsSection 
+                key={`${id}-${idx}`}
                 userName={user}
                 description={description}
                 comments={comments}
