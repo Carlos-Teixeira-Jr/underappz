@@ -1,13 +1,29 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
 
   const [changeAccount, setChangeAccount] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
+
+
+  useEffect(() => {
+    function handleResize(){
+      setIsMobile(window.innerWidth < 768);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [])
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center gap-5 border md:w-1/4 w-4/5 mx-auto my-5 md:mt-20 px-5">
+      <div 
+        className="flex flex-col justify-center items-center md:gap-5 gap-2 md:border w-full md:w-1/4 mx-auto my-5 md:mt-20 mt-0 px-5"
+      >
         <div>
           <Image 
             src={"/logo.png"} 
@@ -21,7 +37,7 @@ const Login = () => {
             <div className="flex flex-col items-center">
               <p className="text-center text-sm">Faça login em uma das suas contas abaixo:</p>
             </div>
-            <hr className="w-1/4"/>
+            <hr className="md:w-1/4 w-4/5"/>
             <div>
               Contas
             </div>
@@ -51,7 +67,7 @@ const Login = () => {
         
       </div>
 
-      <div className="flex justify-around items-center gap-5 border md:w-1/4 w-4/5 mx-auto my-5 p-5">
+      <div className="flex justify-around items-center gap-5 md:border md:w-1/4 w-full mx-auto my-5 p-5">
         {!changeAccount ? (
           <>
             <p 

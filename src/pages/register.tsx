@@ -42,7 +42,7 @@ const Register = () => {
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center gap-5 border w-1/4 mx-auto my-5 mt-5">
+      <div className="flex flex-col justify-center items-center md:gap-5 gap-2 md:border md:w-1/4 w-full mx-auto md:my-5 md:mt-5">
         <div>
           <Image 
             src={"/logo.png"} 
@@ -72,7 +72,7 @@ const Register = () => {
 
         
       </div>
-      <div className="flex justify-around items-center gap-5 border w-1/4 mx-auto my-5 p-5">
+      <div className="flex md:justify-around justify-center items-center md:gap-5 gap-2 md:border md:w-1/4 w-full mx-auto my-5 p-5">
         <p className="text-sm">Já tem uma conta cadstrada?</p>
         <a className="cursor-pointer font-semibold text-primary hover:text-red-300 transition-colors duration-300">Conecte-se!</a>
       </div>
