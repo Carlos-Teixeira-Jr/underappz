@@ -7,7 +7,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center gap-5 border w-1/4 mx-auto my-5 mt-20">
+      <div className="flex flex-col justify-center items-center gap-5 border md:w-1/4 w-4/5 mx-auto my-5 md:mt-20 px-5">
         <div>
           <Image 
             src={"/logo.png"} 
@@ -19,7 +19,7 @@ const Login = () => {
         {!changeAccount ? (
           <>
             <div className="flex flex-col items-center">
-              <p>Faça login em uma das suas contas abaixo:</p>
+              <p className="text-center text-sm">Faça login em uma das suas contas abaixo:</p>
             </div>
             <hr className="w-1/4"/>
             <div>
@@ -51,7 +51,7 @@ const Login = () => {
         
       </div>
 
-      <div className="flex justify-around items-center gap-5 border w-1/4 mx-auto my-5 p-5">
+      <div className="flex justify-around items-center gap-5 border md:w-1/4 w-4/5 mx-auto my-5 p-5">
         {!changeAccount ? (
           <>
             <p 
@@ -61,7 +61,7 @@ const Login = () => {
               Trocar de conta
             </p>
             <p>ou</p>
-            <a href="/register" className="cursor-pointer font-semibold text-primary hover:text-red-300 transition-colors duration-300">
+            <a href="/register" className="cursor-pointer font-semibold text-primary hover:text-red-300 transition-colors duration-300 text-right">
               Se cadastrar
             </a>
           </>
