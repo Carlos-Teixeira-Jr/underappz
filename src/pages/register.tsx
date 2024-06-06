@@ -45,10 +45,10 @@ const Register = () => {
       <div className="flex flex-col justify-center items-center md:gap-5 gap-2 md:border md:w-1/4 w-full mx-auto md:my-5 md:mt-5">
         <div>
           <Image 
-            src={"/logo.png"} 
+            src={"/underappz-logo-2.png"} 
             alt={""}
-            width={500}
-            height={500}
+            width={200}
+            height={200}
           />
         </div>
         <p className="px-2 flex justify-center text-center">Cadastre-se para compartilhar e acompanhar a produção artística de seus amigos.</p>

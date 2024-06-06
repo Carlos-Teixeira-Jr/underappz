@@ -75,9 +75,8 @@ const Home = ({ posts }: { posts: IPost[] }) => {
             id,
             idx
           }: IPost) =>(
-            <>
+            <div key={idx}>
               <PostCard
-                key={`${id}`}
                 imgUrl={photoUrl}
                 alt={""}
                 userName={user}
@@ -85,13 +84,12 @@ const Home = ({ posts }: { posts: IPost[] }) => {
                 description={description} 
               />
               <CommentsSection 
-                key={`${id}-${idx}`}
                 userName={user}
                 description={description}
                 comments={comments}
                 id={id}
               />
-            </>
+            </div>
           )
         )}
         

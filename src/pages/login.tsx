@@ -26,7 +26,7 @@ const Login = () => {
       >
         <div>
           <Image 
-            src={"/logo.png"} 
+            src={"/underappz-logo-2.png"} 
             alt={""}
             width={500}
             height={500}
