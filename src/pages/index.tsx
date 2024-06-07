@@ -1,107 +1,89 @@
-import { Inter } from 'next/font/google'
-import Header from '@/components/header'
-import FavCaroussel from '@/components/favCarroussel'
-import PostCard from '@/components/postCard'
-import Menu from '@/components/menu'
-import DesktopMenu from '@/components/desktopMenu'
-import { useEffect, useState } from 'react'
-import CommentsSection, { IComment } from '@/components/commentsSection'
+import LoginBox from "@/components/login/loginBox";
+import SelectLoginMode from "@/components/login/selectLoginMode";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
-export async function getStaticProps() {
-  const posts = await fetch('https://raw.githubusercontent.com/Carlos-Teixeira-Jr/underappz/main/data/postData.json')
-    .then((res) => res.json())
-    .catch(() => ({}));
-
-  return {
-    props: {
-      posts,
-    },
-  };
-}
-
-export interface IPost {
-  photoUrl: string
-  description: string
-  user: string
-  location: string
-  comments: IComment[]
-  id: number
-  idx: number
-}
-
-const Home = ({ posts }: { posts: IPost[] }) => {
-
-  const [isMobile, setIsMobile] = useState(false)
+const Login = () => {
+  const [selectedBtn, setSelectedBtn] = useState({
+    changeAccount: false,
+    register: false
+  });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    function handleResize(){
-      setIsMobile(window.innerWidth <768);
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
     }
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [])
-  
+  }, []);
+
+  const btn = [
+    {
+      key: "changeAccount",
+      label: "Trocar de conta",
+    },
+    {
+      key: "register",
+      label: "Se cadastrar",
+    },
+  ];
+
   return (
-    <main className="max-w-[1536px] lg:flex">
-
-      {!isMobile && (
-        <DesktopMenu/>
-      )}
-      
-      <div 
-        className={`${
-          isMobile ?
-          '' :
-          'ml-[280px]'
-        }`}
-      >
-        {isMobile && (
-          <Header/>
-        )}
-
-        <FavCaroussel/>
-        
-        {posts.map(
-          ({
-            photoUrl,
-            description,
-            user,
-            location,
-            comments,
-            id,
-            idx
-          }: IPost) =>(
-            <div key={idx}>
-              <PostCard
-                imgUrl={photoUrl}
-                alt={""}
-                userName={user}
-                location={location}
-                description={description} 
-              />
-              <CommentsSection 
-                userName={user}
-                description={description}
-                comments={comments}
-                id={id}
-              />
-            </div>
-          )
-        )}
-        
-
-
-        {isMobile && (
-          <Menu/>
+    <div>
+      <div className="flex flex-col justify-center items-center md:gap-5 gap-2 md:border w-full md:w-1/4 mx-auto my-5 md:mt-20 mt-0 px-5">
+        <div>
+          <Image
+            src={"/underappz-logo-2.png"}
+            alt={""}
+            width={500}
+            height={500}
+          />
+        </div>
+        {!Object.values(selectedBtn).some((e) => e === true) ? (
+          <SelectLoginMode/>
+        ) : (
+          <LoginBox selectedBtn={Object.values(selectedBtn).some((e) => e === true) && selectedBtn.register ? 'register' : 'changeAccount'}/>
         )}
       </div>
-    </main>
-  )
+
+      <div className="flex justify-around items-center gap-5 md:border md:w-1/4 w-full mx-auto my-5 p-5">
+
+        {btn.map((e) => (
+          <button
+            className="font-semibold text-primary hover:text-red-300 transition-colors duration-300"
+            onClick={() => setSelectedBtn({...selectedBtn, [e.key]: true})}
+          >
+            {e.label}
+          </button>
+        ))}
+
+      </div>
+    </div>
+  );
 };
 
-export default Home
+export default Login;
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = (await getSession(context)) as any;
+
+  if (!session) {
+    return {
+      props: {},
+    };
+  }
+
+  return {
+    redirect: {
+      destination: "/home",
+      permanent: false,
+    },
+  };
+};
