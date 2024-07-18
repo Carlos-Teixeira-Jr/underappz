@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const Login = () => {
   const [selectedBtn, setSelectedBtn] = useState({
-    changeAccount: false,
+    login: false,
     register: false
   });
   const [isMobile, setIsMobile] = useState(false);
@@ -26,12 +26,12 @@ const Login = () => {
 
   const btn = [
     {
-      key: "changeAccount",
-      label: "Trocar de conta",
-    },
-    {
       key: "register",
       label: "Se cadastrar",
+    },
+    {
+      key: "login",
+      label: "Login",
     },
   ];
 
@@ -49,7 +49,7 @@ const Login = () => {
         {!Object.values(selectedBtn).some((e) => e === true) ? (
           <SelectLoginMode/>
         ) : (
-          <LoginBox selectedBtn={Object.values(selectedBtn).some((e) => e === true) && selectedBtn.register ? 'register' : 'changeAccount'}/>
+          <LoginBox selectedBtn={Object.values(selectedBtn).some((e) => e === true) && selectedBtn.register ? 'register' : 'login'}/>
         )}
       </div>
 
