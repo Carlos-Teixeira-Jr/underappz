@@ -65,7 +65,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
     if (key === "password") setPassword(event.target.value);
   };
 
-  const handleLogin = async () => {
+  const handleSubmit = async () => {
     setLoading(true);
 
     setEmailError("");
@@ -293,7 +293,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
 
       <button
         className="rounded-xl bg-primary font-bold p-2 hover:bg-secondary transition-colors duration-300 cursor-pointer transform hover:scale-105 active:scale-95"
-        onClick={handleLogin}
+        onClick={handleSubmit}
       >
         Entrar
       </button>
