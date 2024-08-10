@@ -5,18 +5,19 @@ import { signIn } from "next-auth/react";
 import router, { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
+import VerifyEmailModal from "./verifyEmailModal";
 
 export interface ILoginBox {
   selectedBtn: string;
 }
 
 const LoginBox = ({ selectedBtn }: ILoginBox) => {
-
   const router = useRouter();
   const query = router.query;
   const queryEmail = query.email ? query.email : null;
 
   const [email, setEmail] = useState<string>("");
+  console.log("🚀 ~ LoginBox ~ email:", email)
   const [password, setPassword] = useState<string>("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -30,11 +31,11 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
   const [emailVerificationData, setEmailVerificationData] = useState({
     email: queryEmail ? queryEmail : email,
     isEmailVerified: false,
-    emailVerificationCode: '',
+    emailVerificationCode: "",
     password: password,
   });
 
-
+  console.log("🚀 ~ LoginBox ~ emailVerificationData:", emailVerificationData)
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
@@ -61,7 +62,11 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
     key: string,
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    if (key === "email") setEmail(event.target.value);
+    console.log("🚀 ~ LoginBox ~ key:", key)
+    if (key === "email") {
+      setEmail(event.target.value);
+      setEmailVerificationData({ ...emailVerificationData, email: event.target.value})
+    } 
     if (key === "password") setPassword(event.target.value);
   };
 
@@ -73,45 +78,45 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
 
     const isValidEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    if (selectedBtn === 'register') {
+    if (selectedBtn === "register") {
       if (!email) {
-        setEmailError('Por favor, insira seu email para cadastrar uma conta.');
+        setEmailError("Por favor, insira seu email para cadastrar uma conta.");
       } else if (!isValidEmailFormat) {
         setEmailError(
-          'O e-mail inserido não tem o formato de um e-mail válido.'
+          "O e-mail inserido não tem o formato de um e-mail válido."
         );
       }
       if (!password) {
         setPasswordError(
-          'Por favor, insira uma senha para cadastrar sua conta.'
+          "Por favor, insira uma senha para cadastrar sua conta."
         );
       } else if (password.length <= 5) {
-        setPasswordError('A senha precisa ter pelo menos 6 caracteres.');
+        setPasswordError("A senha precisa ter pelo menos 6 caracteres.");
       }
-      if (confirmPassword === '') {
-        setConfirmPasswordError(
-          'Por favor, insira a confirmação de senha.'
-        );
+      if (confirmPassword === "") {
+        setConfirmPasswordError("Por favor, insira a confirmação de senha.");
       }
       if (!confirmPassword) {
-        setConfirmPasswordError(
-          'Por favor, insira a confirmação de senha.'
-        );
+        setConfirmPasswordError("Por favor, insira a confirmação de senha.");
       } else if (password !== confirmPassword) {
         setConfirmPasswordError(
-          'A confirmação de senha precisa ser igual a senha.'
+          "A confirmação de senha precisa ser igual a senha."
         );
       }
     } else {
       if (!email) {
         setEmailError("Por favor, insira seu email para cadastrar uma conta.");
       } else if (!isValidEmailFormat) {
-        setEmailError("O e-mail inserido não tem o formato de um e-mail válido.");
+        setEmailError(
+          "O e-mail inserido não tem o formato de um e-mail válido."
+        );
       }
       if (!password) {
-        setPasswordError("Por favor, insira uma senha para cadastrar sua conta.");
+        setPasswordError(
+          "Por favor, insira uma senha para cadastrar sua conta."
+        );
       }
-  
+
       if (email && password) {
         try {
           setLoading(true);
@@ -121,7 +126,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
       }
     }
 
-    if (selectedBtn === 'register') {
+    if (selectedBtn === "register") {
       if (
         email &&
         isValidEmailFormat &&
@@ -131,14 +136,21 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
       ) {
         try {
           setLoading(true);
-          const { data: responseData } = await axios.post(`${baseUrl}/user/find-by-email`, { email });
+          const { data: responseData } = await axios.post(
+            `${baseUrl}/user/find-by-email`,
+            { email }
+          );
 
-          if (responseData && !responseData.isEmailVerified && !verifyEmailModalIsOpen) {
+          if (
+            responseData &&
+            !responseData.isEmailVerified &&
+            !verifyEmailModalIsOpen
+          ) {
             setVerifyEmailModalIsOpen(true);
             showErrorToast(ErrorToastNames.EmailNotVerified);
-            return
+            return;
           } else if (responseData && responseData.isEmailVerified) {
-            showErrorToast(ErrorToastNames.EmailAlreadyInUse)
+            showErrorToast(ErrorToastNames.EmailAlreadyInUse);
           }
         } catch (error: unknown) {
           console.error(error);
@@ -146,7 +158,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
             if (error.response) {
               const data: any = await sendRequest(
                 `${baseUrl}/auth/register`,
-                'POST',
+                "POST",
                 {
                   email,
                   password,
@@ -156,7 +168,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
 
               if (data) {
                 if (!data.isEmailVerified) {
-                  setVerifyEmailModalIsOpen(true)
+                  setVerifyEmailModalIsOpen(true);
                 }
                 const { email, emailVerificationCode, isEmailVerified } = data;
                 setEmailVerificationData({
@@ -167,40 +179,44 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
                 });
                 setVerifyEmailModalIsOpen(true);
               } else {
-                showErrorToast(ErrorToastNames.EmailAlreadyInUse)
-                setLoading(false)
+                showErrorToast(ErrorToastNames.EmailAlreadyInUse);
+                setLoading(false);
               }
             }
           } else {
-            showErrorToast(ErrorToastNames.ServerConnection)
+            showErrorToast(ErrorToastNames.ServerConnection);
           }
         }
       } else {
-        showErrorToast(ErrorToastNames.InvalidRegisterData)
-        setLoading(false)
+        showErrorToast(ErrorToastNames.InvalidRegisterData);
+        setLoading(false);
       }
     } else {
       if (email && password) {
         try {
-          setLoading(true)
+          setLoading(true);
           const data = await sendRequest(
             `${baseUrl}/user/find-by-email`,
-            'POST',
+            "POST",
             { email }
           );
 
           if (data) {
             const isEmailVerified = data.isEmailVerified;
+            console.log(
+              "🚀 ~ handleSubmit ~ isEmailVerified:",
+              isEmailVerified
+            );
             if (isEmailVerified) {
               try {
-                const signInResponse = await signIn('credentials', {
+                const signInResponse = await signIn("credentials", {
                   email,
                   password,
                   redirect: false,
                 }).then(({ ok }: any) => {
                   if (ok) {
                     toast.dismiss();
-                    router.push('/admin?page=1');
+                    router.push("/feed");
                   } else {
                     toast.dismiss();
                     showErrorToast(ErrorToastNames.UserNotFound);
@@ -210,11 +226,11 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
 
                 if (signInResponse === null) {
                   setLoading(false);
-                  showErrorToast(ErrorToastNames.UserNotFound)
+                  showErrorToast(ErrorToastNames.UserNotFound);
                 }
               } catch (error) {
                 toast.dismiss();
-                setLoading(false)
+                setLoading(false);
                 showErrorToast(ErrorToastNames.ServerConnection);
               }
             } else {
@@ -223,7 +239,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
               setLoading(false);
             }
           } else {
-            showErrorToast(ErrorToastNames.UserNotFound)
+            showErrorToast(ErrorToastNames.UserNotFound);
             setLoading(false);
           }
         } catch (error) {
@@ -233,7 +249,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
         }
       } else {
         showErrorToast(ErrorToastNames.EmptyFields);
-        setLoading(false)
+        setLoading(false);
       }
     }
   };
@@ -300,6 +316,14 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
       <a className="text-sm font-thin text-center hover:text-red-200 transition-colors duration-200 cursor-pointer">
         Esqueceu a senha?
       </a>
+
+      {verifyEmailModalIsOpen && (
+        <VerifyEmailModal
+          isOpen={verifyEmailModalIsOpen}
+          setModalIsOpen={setVerifyEmailModalIsOpen}
+          emailVerificationDataProp={emailVerificationData}
+        />
+      )}
     </div>
   );
 };
