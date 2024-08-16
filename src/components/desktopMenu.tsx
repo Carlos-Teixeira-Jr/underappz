@@ -29,7 +29,7 @@ const DesktopMenu = () => {
   }
   
   return (
-    <div className="flex fixed">
+    <div className="flex fixed md:static">
       <div className=" bg-black pr-16">
         <div>
           <Link href={"/"}>
@@ -47,44 +47,44 @@ const DesktopMenu = () => {
             onClick={() => handleMenuOptionClick("search")}
           >
             <SearchIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Pesquisa</p>
+            <p className="text-base font-thin my-auto">Pesquisa</p>
           </div>
         </div>
         <div>
           <Link href={"/music"}>
             <div className="flex px-4 gap-4 cursor-pointer">
               <MusicIcon
-                width="35"
+                width="30"
               />
-              <p className="text-lg font-thin my-auto">Música</p>
+              <p className="text-base font-thin my-auto">Música</p>
             </div>
           </Link>
         </div>
         <div>
           <div className="flex px-4 gap-4 cursor-pointer">
             <VideoIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Vídeo</p>
+            <p className="text-base font-thin my-auto">Vídeo</p>
           </div>
         </div>
         <div>
           <div className="flex px-4 gap-4 cursor-pointer">
             <ImageIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Imagem</p>
+            <p className="text-base font-thin my-auto">Imagem</p>
           </div>
         </div>
         <div>
           <div className="flex px-4 gap-4 cursor-pointer">
             <TextIcon
-              width="35"
+              width="30"
             />
             <p 
-              className="text-lg font-thin my-auto"
+              className="text-base font-thin my-auto"
               onClick={() => handleMenuOptionClick("text")}
             >Criar</p>
           </div>
@@ -92,25 +92,25 @@ const DesktopMenu = () => {
         <div>
           <div className="flex px-4 gap-4 cursor-pointer">
             <EventIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Eventos</p>
+            <p className="text-base font-thin my-auto">Eventos</p>
           </div>
         </div>
         <div>
           <div className="flex px-4 gap-4 cursor-pointer">
             <MusicIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Equipamentos</p>
+            <p className="text-base font-thin my-auto">Equipamentos</p>
           </div>
         </div>
         <div>
           <div className="flex px-4 gap-4 cursor-pointer">
             <MessageBalloonIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Mensagens</p>
+            <p className="text-base font-thin my-auto">Mensagens</p>
           </div>
         </div>
         <div>
@@ -119,18 +119,18 @@ const DesktopMenu = () => {
             onClick={() => handleMenuOptionClick("note")}
           >
             <NoteIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto cursor-pointer">Notificações</p>
+            <p className="text-base font-thin my-auto cursor-pointer">Notificações</p>
           </div>
         </div>
         
         <div>
           <div className="flex px-4 gap-4 cursor-pointer">
             <ProfileIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Perfil</p>
+            <p className="text-base font-thin my-auto">Perfil</p>
           </div>
         </div>
         <div>
@@ -139,9 +139,9 @@ const DesktopMenu = () => {
             onClick={() => handleMenuOptionClick("more")}
           >
             <MoreIcon
-              width="35"
+              width="30"
             />
-            <p className="text-lg font-thin my-auto">Mais</p>
+            <p className="text-base font-thin my-auto">Mais</p>
           </div>
         </div>
       </div>

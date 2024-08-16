@@ -29,7 +29,7 @@ const Menu = () => {
     <div className="fixed bottom-0 px-5 w-full bg-primary drop-shadow-lg">
 
       {menuIsOpen && (
-        <div className="bg-primary text-center text-3xl py-10 space-y-10">
+        <div className="bg-primary text-center text-3xl py-5 space-y-8">
           <p>Música</p>
           <p>Vídeo</p>
           <p>Imagem</p>
