@@ -1,3 +1,29 @@
+UnderAppz
+UnderAppz é uma rede social ao estilo Instagram voltada para artistas independentes e underground. O objetivo principal da primeira versão (V1) é permitir que artistas possam subir imagens, áudios e vídeos, além de conhecer novos talentos dentro dessa comunidade.
+
+O que já está pronto:
+Telas Iniciais: Interfaces de introdução e navegação básica.
+Layout do Feed Principal: Estrutura visual onde os conteúdos dos artistas serão exibidos.
+Sistema de Cadastro de Usuários: Funcionalidade para novos usuários se registrarem na plataforma.
+Sistema de Login de Usuários: Autenticação e acesso de usuários cadastrados.
+Objetivo da V1:
+Na primeira versão, a aplicação permitirá que artistas underground compartilhem seus trabalhos (imagens, áudios e vídeos) e interajam com outros artistas na plataforma.
+
+Objetivo Final do Aplicativo:
+Além de ser uma rede social, o objetivo final do UnderAppz é evoluir para uma plataforma de e-commerce, onde artistas poderão vender sua arte alternativa, negociar equipamentos de produção artística (como instrumentos e ferramentas) e realizar pagamentos diretamente pelo site.
+
+Instruções para Desenvolvedores
+Frontend: O frontend da aplicação está disponível e pode ser acessado em UnderAppz Frontend.
+Backend: Para rodar o backend, é necessário cloná-lo e inicializá-lo em um servidor local. Certifique-se de que as dependências estejam instaladas e as configurações corretas sejam aplicadas.
+Passos para Rodar o Backend Localmente:
+Clone o repositório backend: git clone <https://github.com/Carlos-Teixeira-Jr/underappz-backend>
+Instale as dependências: npm install
+Configure as variáveis de ambiente necessárias.
+Inicie o servidor: npm run dev
+Certifique-se de que o backend esteja rodando corretamente em http://localhost:3000.
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
