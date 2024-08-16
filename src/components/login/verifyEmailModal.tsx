@@ -24,7 +24,6 @@ const VerifyEmailModal: React.FC<IVerifyEmailModal> = ({
   setModalIsOpen,
   emailVerificationDataProp,
 }) => {
-  console.log("🚀 ~ emailVerificationDataProp:", emailVerificationDataProp);
   const [isMobile, setIsMobile] = useState(false);
   const [input, setInput] = useState('');
   const [verificationCodeError, setVerificationCodeError] = useState('');

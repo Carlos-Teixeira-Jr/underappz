@@ -17,7 +17,6 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
   const queryEmail = query.email ? query.email : null;
 
   const [email, setEmail] = useState<string>("");
-  console.log("🚀 ~ LoginBox ~ email:", email)
   const [password, setPassword] = useState<string>("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -62,13 +61,16 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
     key: string,
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    console.log("🚀 ~ LoginBox ~ key:", key)
     if (key === "email") {
       setEmail(event.target.value);
-      setEmailVerificationData({ ...emailVerificationData, email: event.target.value})
+      setEmailVerificationData({ ...emailVerificationData, email: event.target.value })
     } 
-    if (key === "password") setPassword(event.target.value);
+    if (key === "password") {
+      setPassword(event.target.value);
+      setEmailVerificationData({ ...emailVerificationData, password: event.target.value })
+    }
   };
+  
 
   const handleSubmit = async () => {
     setLoading(true);

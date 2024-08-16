@@ -82,7 +82,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     redirect: {
-      destination: "/home",
+      destination: "/feed",
       permanent: false,
     },
   };
