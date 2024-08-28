@@ -1,6 +1,5 @@
 import Image from "next/image"
 import HeartIcon from "./icons/heartIcon"
-import { comment } from "postcss"
 
 export interface IComment {
   commentatorName: string,
