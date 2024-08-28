@@ -34,8 +34,6 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
     password: password,
   });
 
-  console.log("🚀 ~ LoginBox ~ emailVerificationData:", emailVerificationData)
-
   const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
   const [loading, setLoading] = useState(false);
