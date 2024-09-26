@@ -1,5 +1,6 @@
 import CreateForm from "@/components/createForm";
 import DesktopMenu from "@/components/desktopMenu";
+import Gallery from "@/components/gallery";
 import Header from "@/components/header";
 import { useEffect, useState } from "react";
 
@@ -31,7 +32,7 @@ const TextMosaicPage = () => {
         className={`${
           isMobile ?
           '' :
-          'flex flex-col mx-auto'
+          'flex flex-col mx-auto w-2/4'
         }`}
       >
         {isMobile && (
@@ -39,6 +40,8 @@ const TextMosaicPage = () => {
         )}
 
         <CreateForm />
+
+        <Gallery />
       </div>
     </main>
   )

@@ -6,6 +6,7 @@ import router, { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import VerifyEmailModal from "./verifyEmailModal";
+import Loading from "../icons/loadingIcon";
 
 export interface ILoginBox {
   selectedBtn: string;
@@ -61,14 +62,19 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
   ) => {
     if (key === "email") {
       setEmail(event.target.value);
-      setEmailVerificationData({ ...emailVerificationData, email: event.target.value })
-    } 
+      setEmailVerificationData({
+        ...emailVerificationData,
+        email: event.target.value,
+      });
+    }
     if (key === "password") {
       setPassword(event.target.value);
-      setEmailVerificationData({ ...emailVerificationData, password: event.target.value })
+      setEmailVerificationData({
+        ...emailVerificationData,
+        password: event.target.value,
+      });
     }
   };
-  
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -203,10 +209,6 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
 
           if (data) {
             const isEmailVerified = data.isEmailVerified;
-            console.log(
-              "🚀 ~ handleSubmit ~ isEmailVerified:",
-              isEmailVerified
-            );
             if (isEmailVerified) {
               try {
                 const signInResponse = await signIn("credentials", {
@@ -308,10 +310,11 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
       )}
 
       <button
-        className="rounded-xl bg-primary font-bold p-2 hover:bg-secondary transition-colors duration-300 cursor-pointer transform hover:scale-105 active:scale-95"
+        className="rounded-xl bg-primary font-bold p-2 h-12 hover:bg-secondary transition-colors duration-300 cursor-pointer transform hover:scale-105 active:scale-95 flex justify-center items-center"
         onClick={handleSubmit}
+        disabled={loading}
       >
-        Entrar
+        {loading ? <Loading /> : <span>Entrar</span> }
       </button>
       <a className="text-sm font-thin text-center hover:text-red-200 transition-colors duration-200 cursor-pointer">
         Esqueceu a senha?
