@@ -23,6 +23,7 @@ export enum SuccessToastNames {
 }
 
 export enum ErrorToastNames {
+  CreatePost = 'CreatePost',
   InvalidLoginData = 'invalidLoginData',
   UpdateFavourites = 'updateFavourites',
   PasswordRecovery = 'passwordRecovery',
@@ -347,6 +348,12 @@ const errorToastMessages: Record<ErrorToastNames, ToastMessage> = {
   },
   [ErrorToastNames.AlreadyInLoginPage]: {
     message: 'Insira seus dados para fazer login ou cadastre uma conta.',
+    options: {
+      autoClose: 5000,
+    },
+  },
+  [ErrorToastNames.CreatePost]: {
+    message: 'Houve um erro ao criar sua postagem.',
     options: {
       autoClose: 5000,
     },
