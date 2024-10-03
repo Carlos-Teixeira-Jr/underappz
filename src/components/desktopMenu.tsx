@@ -98,8 +98,8 @@ const DesktopMenu = () => {
           </Link>
         </div>
 
-        {menuOption.map((option) => (
-          <div>
+        {menuOption.map((option, i) => (
+          <div key={i}>
             <div
               className="flex px-4 gap-4 cursor-pointer"
               onClick={() => handleMenuOptionClick(option.key)}
