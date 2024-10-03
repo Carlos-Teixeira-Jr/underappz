@@ -57,6 +57,7 @@ const Login = () => {
 
         {btn.map((e) => (
           <button
+            key={e.key}
             className="font-semibold text-primary hover:text-red-300 transition-colors duration-300"
             onClick={() => setSelectedBtn({...selectedBtn, [e.key]: true})}
           >
