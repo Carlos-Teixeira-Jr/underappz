@@ -13,6 +13,7 @@ export interface ILoginBox {
 }
 
 const LoginBox = ({ selectedBtn }: ILoginBox) => {
+  console.log("🚀 ~ LoginBox ~ selectedBtn:", selectedBtn)
   const router = useRouter();
   const query = router.query;
   const queryEmail = query.email ? query.email : null;

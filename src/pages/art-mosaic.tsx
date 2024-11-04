@@ -14,10 +14,6 @@ export async function getStaticProps() {
 }
 
 const ArtMosaicPage = ({posts}: any) => {
-console.log("🚀 ~ file: art-mosaic.tsx:17 ~ ArtMosaicPage ~ posts:", posts)
-
-  
-
   return (
     <div className="">
       <div className="mb-4 px-2 my-4">
