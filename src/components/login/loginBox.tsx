@@ -21,7 +21,9 @@ const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
   const queryEmail = query.email ? query.email : null;
 
   const [email, setEmail] = useState<string>("");
+  console.log("🚀 ~ LoginBox ~ email:", email)
   const [password, setPassword] = useState<string>("");
+  console.log("🚀 ~ LoginBox ~ password:", password)
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
