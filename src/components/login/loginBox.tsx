@@ -2,8 +2,8 @@ import { sendRequest } from "@/common/hooks/network/senRequestHook";
 import { ErrorToastNames, showErrorToast } from "@/common/utils/toast";
 import axios from "axios";
 import { signIn } from "next-auth/react";
-import router, { useRouter } from "next/router";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import VerifyEmailModal from "./verifyEmailModal";
 import Loading from "../icons/loadingIcon";
@@ -44,7 +44,7 @@ const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
 
   const [loading, setLoading] = useState(false);
 
-  const inputs = [
+  const inputs = useMemo(() => [
     {
       key: "email",
       placeholder: "Insira seu email...",
@@ -66,7 +66,7 @@ const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
       type: "password",
       label: "Confirmação de senha",
     },
-  ];
+  ], [email, password]);
 
   const handleInputChange = (
     key: string,
@@ -268,10 +268,10 @@ const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
     }
   };
 
-  useEffect(() => {
-    const inputTest = inputs.slice(0, -1).map((input) => input);
-    console.log("🚀 ~ useEffect ~ inputTest:", inputTest);
-  }, [inputs]);
+  // useEffect(() => {
+  //   const inputTest = inputs.slice(0, -1).map((input) => input);
+  //   console.log("🚀 ~ useEffect ~ inputTest:", inputTest);
+  // }, [inputs]);
 
   return (
     <div className="flex flex-col gap-2 mb-10 w-full">
