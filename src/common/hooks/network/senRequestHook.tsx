@@ -5,6 +5,7 @@ export const sendRequest = async (url: string, method: string, body: any) => {
     toast.loading('Enviando...');
     const response = await fetch(url, {
       method,
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json',
       },

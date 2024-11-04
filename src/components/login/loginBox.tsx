@@ -268,11 +268,6 @@ const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
     }
   };
 
-  useEffect(() => {
-    const inputxada = inputs.slice(0, -1).map((input) => input);
-    console.log("🚀 ~ useEffect ~ inputxada:", inputxada);
-  }, [inputs]);
-
   return (
     <div className="flex flex-col gap-2 mb-10 w-full">
       {isRegister || isLogin ? (
