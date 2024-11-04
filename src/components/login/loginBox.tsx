@@ -14,6 +14,8 @@ export interface ILoginBox {
 }
 
 const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
+  console.log("🚀 ~ LoginBox ~ isLogin:", isLogin)
+  console.log("🚀 ~ LoginBox ~ isRegister:", isRegister)
   const router = useRouter();
   const query = router.query;
   const queryEmail = query.email ? query.email : null;
