@@ -3,7 +3,7 @@ import { ErrorToastNames, showErrorToast } from "@/common/utils/toast";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import router, { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import VerifyEmailModal from "./verifyEmailModal";
 import Loading from "../icons/loadingIcon";
@@ -14,16 +14,16 @@ export interface ILoginBox {
 }
 
 const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
-  console.log("🚀 ~ LoginBox ~ isLogin:", isLogin)
-  console.log("🚀 ~ LoginBox ~ isRegister:", isRegister)
+  console.log("🚀 ~ LoginBox ~ isLogin:", isLogin);
+  console.log("🚀 ~ LoginBox ~ isRegister:", isRegister);
   const router = useRouter();
   const query = router.query;
   const queryEmail = query.email ? query.email : null;
 
   const [email, setEmail] = useState<string>("");
-  console.log("🚀 ~ LoginBox ~ email:", email)
+  console.log("🚀 ~ LoginBox ~ email:", email);
   const [password, setPassword] = useState<string>("");
-  console.log("🚀 ~ LoginBox ~ password:", password)
+  console.log("🚀 ~ LoginBox ~ password:", password);
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
@@ -268,26 +268,32 @@ const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
     }
   };
 
+  useEffect(() => {
+    const inputxada = inputs.slice(0, -1).map((input) => input);
+    console.log("🚀 ~ useEffect ~ inputxada:", inputxada);
+  }, [inputs]);
+
   return (
     <div className="flex flex-col gap-2 mb-10 w-full">
-
-      {isRegister || isLogin ? inputs.slice(0, -1).map((input) => (
-        <div key={input.key} className="w-full">
-          <input
-            placeholder={input.placeholder}
-            value={input.value}
-            className="border p-2 h-9 text-quaternary w-full my-1 rounded"
-            type={input.type}
-            onChange={(event) => handleInputChange(input.key, event)}
-          />
-          {input.key === "email" && emailError !== "" && (
-            <span className="text-sm text-red-500">{emailError}</span>
-          )}
-          {input.key === "password" && passwordError !== "" && (
-            <span className="text-sm text-red-500">{passwordError}</span>
-          )}
-        </div>
-      )) : (
+      {isRegister || isLogin ? (
+        inputs.slice(0, -1).map((input) => (
+          <div key={input.key} className="w-full">
+            <input
+              placeholder={input.placeholder}
+              value={input.value}
+              className="border p-2 h-9 text-quaternary w-full my-1 rounded"
+              type={input.type}
+              onChange={(event) => handleInputChange(input.key, event)}
+            />
+            {input.key === "email" && emailError !== "" && (
+              <span className="text-sm text-red-500">{emailError}</span>
+            )}
+            {input.key === "password" && passwordError !== "" && (
+              <span className="text-sm text-red-500">{passwordError}</span>
+            )}
+          </div>
+        ))
+      ) : (
         <section className="flex flex-col items-center gap-5">
           <h1 className="text-center text-sm">
             Faça login em uma das suas contas abaixo:
