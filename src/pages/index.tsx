@@ -1,15 +1,12 @@
 import LoginBox from "@/components/login/loginBox";
-import SelectLoginMode from "@/components/login/selectLoginMode";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Login = () => {
-  const [selectedBtn, setSelectedBtn] = useState({
-    login: false,
-    register: false
-  });
+  const [login, setLogin] = useState(false);
+  const [register, setRegister] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -35,6 +32,17 @@ const Login = () => {
     },
   ];
 
+  const toggleOption = (key: string) => {
+    if (key === "login") {
+      setLogin(true);
+      setRegister(false);
+    }
+    if (key === "register") {
+      setLogin(false);
+      setRegister(true);
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center md:gap-5 gap-2 md:border w-full md:w-1/4 mx-auto my-5 md:mt-20 mt-0 px-5">
@@ -46,24 +54,20 @@ const Login = () => {
             height={500}
           />
         </div>
-        {!Object.values(selectedBtn).some((e) => e === true) ? (
-          <SelectLoginMode/>
-        ) : (
-          <LoginBox selectedBtn={Object.values(selectedBtn).some((e) => e === true) && selectedBtn.register ? 'register' : 'login'}/>
-        )}
+
+        <LoginBox isLogin={login} isRegister={register}/>
       </div>
 
       <div className="flex justify-around items-center gap-5 md:border md:w-1/4 w-full mx-auto my-5 p-5">
-
         {btn.map((e) => (
           <button
+            key={e.key}
             className="font-semibold text-primary hover:text-red-300 transition-colors duration-300"
-            onClick={() => setSelectedBtn({...selectedBtn, [e.key]: true})}
+            onClick={() => toggleOption(e.key)}
           >
             {e.label}
           </button>
         ))}
-
       </div>
     </div>
   );

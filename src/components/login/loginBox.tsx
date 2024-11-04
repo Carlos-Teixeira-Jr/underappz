@@ -9,11 +9,11 @@ import VerifyEmailModal from "./verifyEmailModal";
 import Loading from "../icons/loadingIcon";
 
 export interface ILoginBox {
-  selectedBtn: string;
+  isLogin: boolean;
+  isRegister: boolean;
 }
 
-const LoginBox = ({ selectedBtn }: ILoginBox) => {
-  console.log("🚀 ~ LoginBox ~ selectedBtn:", selectedBtn)
+const LoginBox = ({ isRegister, isLogin }: ILoginBox) => {
   const router = useRouter();
   const query = router.query;
   const queryEmail = query.email ? query.email : null;
@@ -55,6 +55,13 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
       type: "password",
       label: "Senha",
     },
+    {
+      key: "confirmPassword",
+      placeholder: "Insira sua confirmação de senha...",
+      value: confirmPassword,
+      type: "password",
+      label: "Confirmação de senha",
+    },
   ];
 
   const handleInputChange = (
@@ -85,7 +92,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
 
     const isValidEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    if (selectedBtn === "register") {
+    if (isRegister) {
       if (!email) {
         setEmailError("Por favor, insira seu email para cadastrar uma conta.");
       } else if (!isValidEmailFormat) {
@@ -133,7 +140,7 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
       }
     }
 
-    if (selectedBtn === "register") {
+    if (isRegister) {
       if (
         email &&
         isValidEmailFormat &&
@@ -259,63 +266,56 @@ const LoginBox = ({ selectedBtn }: ILoginBox) => {
 
   return (
     <div className="flex flex-col gap-2 mb-10 w-full">
-      {selectedBtn && selectedBtn === "login" ? (
-        inputs.map((e) => (
-          <div key={e.key} className="w-full">
-            <input
-              placeholder={e.placeholder}
-              value={e.value}
-              className="border p-2 h-9 text-quaternary w-full"
-              type={e.type}
-              onChange={(event) => handleInputChange(e.key, event)}
-            />
-            {e.key === "email" && emailError !== "" && (
-              <span className="text-sm text-red-500">{emailError}</span>
-            )}
-            {e.key === "password" && passwordError !== "" && (
-              <span className="text-sm text-red-500">{passwordError}</span>
-            )}
-          </div>
-        ))
-      ) : (
-        <>
-          {inputs.map((e) => (
-            <div key={e.key} className="w-full">
-              <input
-                placeholder={e.placeholder}
-                value={e.value}
-                className="border p-2 h-9 text-quaternary w-full"
-                type={e.type}
-                onChange={(event) => handleInputChange(e.key, event)}
-              />
-              {e.key === "email" && emailError !== "" && (
-                <span className="text-sm text-red-500">{emailError}</span>
-              )}
-              {e.key === "password" && passwordError !== "" && (
-                <span className="text-sm text-red-500">{passwordError}</span>
-              )}
-            </div>
-          ))}
+
+      {isRegister || isLogin ? inputs.slice(0, -1).map((input) => (
+        <div key={input.key} className="w-full">
+          <input
+            placeholder={input.placeholder}
+            value={input.value}
+            className="border p-2 h-9 text-quaternary w-full my-1 rounded"
+            type={input.type}
+            onChange={(event) => handleInputChange(input.key, event)}
+          />
+          {input.key === "email" && emailError !== "" && (
+            <span className="text-sm text-red-500">{emailError}</span>
+          )}
+          {input.key === "password" && passwordError !== "" && (
+            <span className="text-sm text-red-500">{passwordError}</span>
+          )}
+        </div>
+      )) : (
+        <section className="flex flex-col items-center gap-5">
+          <h1 className="text-center text-sm">
+            Faça login em uma das suas contas abaixo:
+          </h1>
+
+          <hr className="md:w-1/4 w-4/5" />
+          <div>Contas</div>
+        </section>
+      )}
+
+      {isRegister && (
+        <div>
           <input
             placeholder={"Confirmação da senha..."}
             value={confirmPassword}
-            className="border p-2 h-9 text-quaternary w-full"
+            className="border p-2 h-9 text-quaternary w-full rounded my-1"
             type="password"
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          {selectedBtn === "register" && confirmPasswordError !== "" && (
+          {isRegister && confirmPasswordError !== "" && (
             <span className="text-sm text-red-500">{confirmPasswordError}</span>
           )}
-        </>
+        </div>
       )}
 
       <button
-        className="rounded-xl bg-primary font-bold p-2 h-12 hover:bg-secondary transition-colors duration-300 cursor-pointer transform hover:scale-105 active:scale-95 flex justify-center items-center"
+        className="rounded-xl bg-primary font-bold p-2 h-12 hover:bg-secondary transition-colors duration-300 cursor-pointer transform hover:scale-105 active:scale-95 flex justify-center items-center my-1"
         onClick={handleSubmit}
         disabled={loading}
       >
-        {loading ? <Loading /> : <span>Entrar</span> }
+        {loading ? <Loading /> : <span>Entrar</span>}
       </button>
       <a className="text-sm font-thin text-center hover:text-red-200 transition-colors duration-200 cursor-pointer">
         Esqueceu a senha?
